@@ -1,0 +1,200 @@
+/** UI文言（日本語）。キーはページ・コンポーネント単位でグルーピングしている。 */
+export const UI_JA: Record<string, string> = {
+  // ===== 共通 =====
+  'common.back': '戻る',
+  'common.next': '次へ',
+  'common.calculate': '計算する',
+  'common.restart': '最初からやり直す',
+  'common.auto': '自動',
+
+  // ===== ヘッダー =====
+  'header.appName': '有意差検定',
+  'header.selectTest': '検定を選ぶ',
+  'header.explainList': '検定一覧・説明',
+  'header.guide': '検定選択ガイド',
+  'header.langButtonEn': 'English',
+  'header.langButtonJa': '日本語',
+
+  // ===== フッター =====
+  'footer.privacy': 'すべての計算はお使いのブラウザ内で完結し、データは外部に送信されません。',
+  'footer.credits': 'オープンソースライセンス（クレジット表示）',
+  'footer.faq': 'よくある質問',
+  'footer.contact': 'お問い合わせ',
+  'footer.privacyPolicy': 'プライバシーポリシー',
+  'footer.termsOfUse': '利用規約',
+  'footer.copyright': '© 2026 有意差検定',
+
+  // ===== 免責文 =====
+  'disclaimer.title': '免責事項',
+  'disclaimer.body':
+    '本アプリの計算結果は学習・参考目的で提供されるものであり、その正確性・完全性を保証するものではありません。研究発表・論文投稿・医療上の意思決定など重要な用途では、必ず専門家の確認と専用統計ソフトウェア（R、SPSS等）による検証を行ってください。本アプリの利用により生じたいかなる損害についても、開発者は責任を負いません。',
+
+  // ===== ステッパー =====
+  'stepper.aria': '進捗',
+  'stepper.step1': '検定を選ぶ',
+  'stepper.step2': 'パラメータ指定',
+  'stepper.step3': 'データ入力',
+  'stepper.step4': '結果',
+
+  // ===== 画面A：検定選択 =====
+  'testSelector.title': '検定を選んでください',
+  'testSelector.subtitlePrefix':
+    '検定を選択し、パラメータとデータを入力するとp値と判定が表示されます。どの検定を使えばよいか迷ったら',
+  'testSelector.subtitleLink': '検定一覧・説明',
+  'testSelector.subtitleSuffix': 'を参照してください。',
+  'testSelector.guideLink': '🧭 どの検定を使えばいいかわからない方はこちら',
+  'testSelector.tabsAria': 'カテゴリ',
+  'testSelector.tabAll': 'すべて',
+  'testSelector.tabParametric': 'パラメトリック',
+  'testSelector.tabNonparametric': 'ノンパラメトリック',
+  'testSelector.useTest': 'この検定を使う',
+  'testSelector.comingSoon': '準備中',
+
+  // ===== 画面B：パラメータ指定 =====
+  'params.subtitle': 'データの構成を指定してください。次の画面で入力ボックスが生成されます。',
+  'params.errorRequired': '値を入力してください。',
+  'params.errorInteger': '整数を入力してください。',
+  'params.errorNumber': '数値を入力してください。',
+  'params.errorRange': '{{min}}〜{{max}}の範囲で入力してください。',
+  'params.rangeSuffix': '（{{min}}〜{{max}}）',
+  'params.sampleSizeOf': '{{label}}のサンプル数',
+  'params.pairs': 'ペア数',
+  'params.sampleSize': 'サンプル数',
+  'params.mu0': '基準値 μ₀（比較したい値）',
+  'params.conditionCount': '条件数',
+  'params.subjectCount': '対象者数（全条件共通）',
+  'params.factorALevels': '要因Aの水準数',
+  'params.factorBLevels': '要因Bの水準数',
+  'params.cellReplicates': '各セルの繰り返し数（全セル共通）',
+  'params.categoryCount': 'カテゴリ数',
+  'params.groupCount': '群数',
+  'params.groupSampleSize': '群{{n}}のサンプル数',
+  'params.rows': '行数',
+  'params.cols': '列数',
+  'params.groupADefault': '群A',
+  'params.groupBDefault': '群B',
+
+  // ===== 画面C：データ入力 =====
+  'input.hintGoodness':
+    '観測度数には0以上の整数、期待比率には0より大きい数値（比率の合計は1でなくても構いません）を入力してください。',
+  'input.hintMatrix': '各セルの度数（0以上の整数）を入力してください。',
+  'input.hintDefault': '各セルに数値を入力してください。小数も入力できます。',
+  'input.pasteHint':
+    '💡 Excelやスプレッドシートでコピーした範囲を先頭のセルに貼り付けると、複数のセルへ一括入力できます。',
+  'input.colNo': 'No.',
+  'input.rowPrefix': '行',
+  'input.errorInvalidCells': '数値でない入力（空欄・文字列）が{{count}}か所あります。赤枠のセルを修正してください。',
+  'input.errorCalculation': '計算中にエラーが発生しました。入力データを確認してください。',
+
+  // ===== 画面D：結果 =====
+  'result.title': '検定結果',
+  'result.copyApa': '結果をコピー（APA形式）',
+  'result.copyApaDone': 'コピーしました ✓',
+  'result.statLabel_df': '自由度',
+  'result.pValueBoth': 'p値（両側）',
+  'result.alphaLabel': '有意水準 α = {{alpha}}',
+  'result.significantYes_diff': '有意差あり',
+  'result.significantNo_diff': '有意差なし',
+  'result.significantYes_corr': '有意な相関あり',
+  'result.significantNo_corr': '有意な相関なし',
+  'result.rejectYes': 'p < {{alpha}} のため帰無仮説を棄却します。',
+  'result.rejectNo': 'p ≥ {{alpha}} のため帰無仮説を棄却できません。',
+  'result.anovaSource': '変動要因',
+  'result.anovaDf': '自由度',
+  'result.anovaF': 'F値',
+  'result.anovaP': 'p値',
+  'result.anovaJudge05': '判定（α=0.05）',
+  'result.anovaJudge01': '判定（α=0.01）',
+  'result.significant': '有意',
+  'result.notSignificant': '有意でない',
+  'result.effectSizeTitle': '効果量',
+  'result.effectSizeNote':
+    '※ 効果量は差や関連の「大きさ」を表す指標です。解釈ラベルはCohen (1988)の慣例的な目安であり、分野によって基準は異なります。',
+  'result.correlationTitle': '相関係数',
+  'result.correlationStrengthNote':
+    '強さの目安：|r| < 0.2 ほとんど相関なし / 0.2〜0.4 弱い / 0.4〜0.7 中程度 / 0.7〜0.9 強い / 0.9以上 非常に強い',
+  'result.tukeyTitle': 'Tukey多重比較（Tukey-Kramer法）',
+  'result.tukeyPair': '群ペア',
+  'result.tukeyDiff': '平均値の差',
+  'result.tukeyQ': 'q値',
+  'result.tukeyP': 'p値',
+  'result.tukeyJudge': '判定（α=0.05）',
+  'result.chartTitle': 'グラフ',
+  'result.summaryTitle': '入力データのサマリー',
+  'result.summaryGroup': '群',
+  'result.summaryN': 'サンプル数',
+  'result.summaryMean': '平均',
+  'result.summaryMedian': '中央値',
+  'result.summarySd': '標準偏差',
+  'result.extraStatsTitle': '補足統計量',
+  'result.explainLink': 'この検定について詳しく見る →',
+
+  // ===== 画面E：検定一覧 =====
+  'explainList.title': '検定一覧・説明',
+  'explainList.subtitle':
+    '各検定の名前をクリックすると、使いどころ・仮説・前提条件・計算式の解説が表示されます。すべての検定でデータを入力して計算を実行できます。',
+  'explainList.parametric': 'パラメトリック検定',
+  'explainList.nonparametric': 'ノンパラメトリック検定',
+  'explainList.comingSoon': '準備中',
+
+  // ===== 画面F：個別検定説明 =====
+  'explainDetail.backLink': '← 検定一覧に戻る',
+  'explainDetail.parametric': 'パラメトリック',
+  'explainDetail.nonparametric': 'ノンパラメトリック',
+  'explainDetail.comingSoon': '準備中',
+  'explainDetail.overview': '概要',
+  'explainDetail.purpose': 'どんなときに使うか',
+  'explainDetail.hypothesis': '仮説',
+  'explainDetail.h0': '帰無仮説 H₀：',
+  'explainDetail.h1': '対立仮説 H₁：',
+  'explainDetail.assumptions': '前提条件',
+  'explainDetail.formula': '統計量の式',
+  'explainDetail.example': '使用例',
+  'explainDetail.notes': '補足・注意点',
+  'explainDetail.useButton': 'この検定でデータを解析する',
+
+  // ===== 検定選択ガイド =====
+  'guide.title': '検定選択ガイド',
+  'guide.subtitle':
+    'いくつかの質問に答えると、状況に合った検定を提案します。判断に迷う場合の目安としてご利用ください。',
+  'guide.recommendedLabel': 'おすすめの検定',
+  'guide.useTest': 'この検定を使う',
+  'guide.moreDetail': '説明を詳しく見る',
+  'guide.backQuestion': '← 一つ前の質問に戻る',
+  'guide.restart': '最初からやり直す',
+
+  // ===== OSSクレジット =====
+  'credits.title': 'オープンソースライセンス',
+  'credits.subtitle': '本アプリは以下のオープンソースソフトウェア・フォントを利用して作られています。',
+  'credits.libName': 'ライブラリ名',
+  'credits.license': 'ライセンス',
+
+  // ===== グラフ（DataChart） =====
+  'chart.savePng': 'PNG形式で保存',
+  'chart.saveSvg': 'SVG形式で保存',
+  'chart.saveError': '画像の保存に失敗しました。お使いのブラウザが対応していない可能性があります。',
+  'chart.settingsSummary': 'グラフの表示設定（タイトル・軸範囲・データ名）',
+  'chart.titleLabel': 'グラフタイトル',
+  'chart.xAxisLabel': 'X軸ラベル',
+  'chart.yAxisLabel': 'Y軸ラベル',
+  'chart.categoryNames': 'カテゴリ名（横軸）',
+  'chart.dataNames': 'データ名',
+  'chart.seriesNames': '系列名（凡例）',
+  'chart.xRange': 'X軸 最小値〜最大値',
+  'chart.yRange': 'Y軸 最小値〜最大値',
+  'chart.yTickStep': 'Y軸目盛りの間隔',
+  'chart.yTickStepPlaceholder': '自動（5等分）',
+  'chart.yTickStepHint': '例：1、0.5、0.1など',
+  'chart.xMinAria': 'X軸の最小値',
+  'chart.xMaxAria': 'X軸の最大値',
+  'chart.yMinAria': 'Y軸の最小値',
+  'chart.yMaxAria': 'Y軸の最大値',
+  'chart.filenameSuffix': 'グラフ',
+  // グラフ既定ラベル
+  'chart.defaultValueAxis': '値',
+  'chart.defaultCountAxis': '度数',
+  'chart.defaultSuccessAxis': '成功数',
+  'chart.defaultObserved': '観測度数',
+  'chart.defaultExpected': '期待度数',
+  'chart.defaultSuccessSeries': '成功数（1の数）',
+};

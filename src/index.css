@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* MathJax の数式がはみ出す場合に横スクロールさせる */
+mjx-container[display='true'] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}

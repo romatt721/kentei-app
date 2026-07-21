@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>有意差検定 | ブラウザで完結する統計検定Webアプリ</title>
+    <meta
+      name="description"
+      content="t検定・分散分析・カイ二乗検定など23種類の統計的検定をブラウザ上で無料計算。データはサーバーに送信されません。日本語・英語対応。"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="有意差検定 | ブラウザで完結する統計検定Webアプリ" />
+    <meta
+      property="og:description"
+      content="t検定・分散分析・カイ二乗検定など23種類の統計的検定をブラウザ上で無料計算。データはサーバーに送信されません。"
+    />
+    <meta property="og:locale" content="ja_JP" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        },
+        startup: { typeset: false },
+      };
+    </script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
