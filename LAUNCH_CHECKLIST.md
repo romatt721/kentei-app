@@ -54,8 +54,7 @@
 ## 今後のToDo（優先順）
 
 ### 🔴 公開前に必須（あなたの対応が必要）
-- [ ] **お問い合わせページのメールアドレスを実際のものに差し替える**
-      → `src/pages/ContactPage.tsx` の `CONTACT_EMAIL` 定数（現在は `contact@example.com` のプレースホルダー）
+- [x] お問い合わせページのメールアドレスを実際のものに差し替え（`romatt721@gmail.com`、2026-07-21完了）
 - [x] gitリポジトリの初期化・最初のコミット（2026-07-21完了）
 - [x] GitHub認証（`gh auth login`）完了（2026-07-21）
 - [x] GitHubリポジトリ作成・push完了（`romatt721/kentei-app`, Private、2026-07-21）
