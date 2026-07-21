@@ -1,13 +1,12 @@
 # 公開・収益化に向けた進捗とToDo
 
 最終更新：2026-07-21
-現在の状態：**サイトはVercelにデプロイ済み・動作確認済み（2026-07-21）。ただし現在「Vercel Authentication」を有効にして一時的に非公開中（自分以外アクセス不可）。AdSense申請の準備が整うまでこのままにする方針。**
+現在の状態：**サイトはVercelにデプロイ済み・一般公開済み（Vercel Authenticationは無効化済み、2026-07-21）。Vercel Analytics導入済み。これからGoogle AdSenseに申請予定。**
 
 ## ⏭️ 次にやること（再開時はここから）
 
-1. AdSense申請の準備が整ったら、Vercelダッシュボード → Settings → Deployment Protection → 「Vercel Authentication」のトグルをオフにして一般公開に戻す
-   - ※オンのままだとGoogleのクローラーがアクセスできず、AdSense審査が通らないので注意
-2. 公開状態に戻したら、Google AdSense（https://www.google.com/adsense/）に申し込む
+1. Google AdSense（https://www.google.com/adsense/）に申し込む
+2. 審査**承認後**：発行されたコードを実際に埋め込む、`public/ads.txt`を作成する（詳細は下記「🟡 サイト公開後」参照）
 3. （任意）独自ドメインを使いたい場合は、Vercelダッシュボードの「Add Domain」から設定する
 
 このファイルは、プロジェクトの状況を後から見返すため、また別セッションでClaude Codeに作業を引き継ぐ際に、これまでの経緯と残タスクをすぐ把握できるようにするための記録です。作業が進んだら、都度このファイルを更新してください（Claude Codeに依頼する場合は「LAUNCH_CHECKLIST.mdを更新して」と伝えれば反映します）。
