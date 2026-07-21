@@ -1,13 +1,16 @@
 # 公開・収益化に向けた進捗とToDo
 
 最終更新：2026-07-21
-現在の状態：**サイトはVercelにデプロイ済み・一般公開済み（Vercel Authenticationは無効化済み、2026-07-21）。Vercel Analytics導入済み。これからGoogle AdSenseに申請予定。**
+現在の状態：**サイトはVercelにデプロイ済み・一般公開済み（URL: https://kentei-app-silk.vercel.app）。Vercel Analytics導入済み。Google AdSenseの申請中で中断（支払い先情報の入力まで完了、次はサイトへの確認コード設置）。**
 
 ## ⏭️ 次にやること（再開時はここから）
 
-1. Google AdSense（https://www.google.com/adsense/）に申し込む
-2. 審査**承認後**：発行されたコードを実際に埋め込む、`public/ads.txt`を作成する（詳細は下記「🟡 サイト公開後」参照）
-3. （任意）独自ドメインを使いたい場合は、Vercelダッシュボードの「Add Domain」から設定する
+1. Google AdSense（https://www.google.com/adsense/）に再ログインし、申請の続きから再開する
+   - 支払い先情報（住所・電話番号）の入力までは完了済み
+   - 次のステップ：サイトにAdSenseの確認コードを設置する案内が出るはず（この作業はClaude Codeに依頼できます）
+2. コード設置後、Googleによる**審査**が始まる（数日〜数週間かかる場合あり）
+3. 審査**承認後**：発行されたコードを実際に埋め込む、`public/ads.txt`を作成する（詳細は下記「🟡 サイト公開後」参照）
+4. （任意）独自ドメインを使いたい場合は、Vercelダッシュボードの「Add Domain」から設定する
 
 このファイルは、プロジェクトの状況を後から見返すため、また別セッションでClaude Codeに作業を引き継ぐ際に、これまでの経緯と残タスクをすぐ把握できるようにするための記録です。作業が進んだら、都度このファイルを更新してください（Claude Codeに依頼する場合は「LAUNCH_CHECKLIST.mdを更新して」と伝えれば反映します）。
 
