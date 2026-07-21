@@ -1,7 +1,6 @@
 import { useLocale } from '../i18n/LocaleContext';
 
-// TODO: 公開前に実際の連絡先メールアドレスに差し替えてください（現在は仮のプレースホルダーです）
-const CONTACT_EMAIL = 'contact@example.com';
+const CONTACT_EMAIL = 'romatt721@gmail.com';
 
 const CONTENT = {
   ja: {
