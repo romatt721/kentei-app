@@ -8,7 +8,7 @@ export const UI_JA: Record<string, string> = {
   'common.auto': '自動',
 
   // ===== ヘッダー =====
-  'header.appName': '有意差検定',
+  'header.appName': '有意差検定の計算サイト',
   'header.selectTest': '検定を選ぶ',
   'header.explainList': '検定一覧・説明',
   'header.guide': '検定選択ガイド',
