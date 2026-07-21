@@ -1,7 +1,14 @@
 # 公開・収益化に向けた進捗とToDo
 
 最終更新：2026-07-21
-現在の状態：**機能開発は完了。公開準備フェーズ。**
+現在の状態：**機能開発は完了。GitHubアカウント（romatt721）作成・認証・リポジトリ作成・pushまで完了。次はVercelへのデプロイ。**
+
+## ⏭️ 次にやること（再開時はここから）
+
+1. Vercel（https://vercel.com）にアクセスし、GitHubアカウント（romatt721）でログイン
+2. 「Add New Project」からリポジトリ `romatt721/kentei-app` をインポート（Privateリポジトリなので、Vercelに対するGitHub連携の許可が必要な場合あり）
+3. デプロイ設定はデフォルトのままでOK（`vercel.json`で設定済み）。デプロイ実行
+4. デプロイ完了後、発行されたURLで実際にサイトが動くか確認
 
 このファイルは、プロジェクトの状況を後から見返すため、また別セッションでClaude Codeに作業を引き継ぐ際に、これまでの経緯と残タスクをすぐ把握できるようにするための記録です。作業が進んだら、都度このファイルを更新してください（Claude Codeに依頼する場合は「LAUNCH_CHECKLIST.mdを更新して」と伝えれば反映します）。
 
@@ -35,6 +42,13 @@
 - `npm run verify`：統計計算・APA形式・多言語翻訳の整合性チェック（約100項目）
 - Playwright E2Eテスト一式（`/private/tmp/.../scratchpad/e2e*.py`にあるが、セッション終了とともに消える一時ファイルのため、再度必要なら作り直しが必要）
 
+### バージョン管理
+- `git init`済み、最初のコミット作成済み（2026-07-21）
+- コミットの作成者名は匿名ハンドル `romatt <romatt@users.noreply.github.com>` に設定済み（実際のGitHubアカウント作成後、本物のno-replyアドレスに変わっても問題なし）
+- `.gitignore` に `.claude/`（Claude Codeのローカル権限設定）を追加済み。`node_modules`・`dist`・`.DS_Store`等ももちろん除外済み
+- GitHubアカウント `romatt721` を作成、`gh auth login`でCLI認証済み（2026-07-21）
+- GitHubリポジトリ `romatt721/kentei-app`（Private）を作成し、コードをpush済み（2026-07-21）
+
 ---
 
 ## 今後のToDo（優先順）
@@ -42,8 +56,10 @@
 ### 🔴 公開前に必須（あなたの対応が必要）
 - [ ] **お問い合わせページのメールアドレスを実際のものに差し替える**
       → `src/pages/ContactPage.tsx` の `CONTACT_EMAIL` 定数（現在は `contact@example.com` のプレースホルダー）
-- [ ] **gitリポジトリの初期化・GitHubへのプッシュ**（このプロジェクトはまだgit管理されていません）
-- [ ] **Vercel（または他のホスティング）へのデプロイ・GitHub連携**
+- [x] gitリポジトリの初期化・最初のコミット（2026-07-21完了）
+- [x] GitHub認証（`gh auth login`）完了（2026-07-21）
+- [x] GitHubリポジトリ作成・push完了（`romatt721/kentei-app`, Private、2026-07-21）
+- [ ] **Vercelへのデプロイ・GitHub連携**（`vercel.json`は設定済み）
 - [ ] （任意）独自ドメインの取得・設定
 
 ### 🟡 サイト公開後
