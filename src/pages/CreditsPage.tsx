@@ -10,6 +10,7 @@ const CREDITS: { name: string; license: string; url: string }[] = [
   { name: 'jStat', license: 'MIT License', url: 'https://jstat.github.io/' },
   { name: 'simple-statistics', license: 'ISC License', url: 'https://simple-statistics.github.io/' },
   { name: 'MathJax', license: 'Apache License 2.0', url: 'https://www.mathjax.org/' },
+  { name: 'Vercel Analytics', license: 'MIT License', url: 'https://vercel.com/docs/analytics' },
   { name: 'Noto Sans JP（Google Fonts）', license: 'SIL Open Font License 1.1', url: 'https://fonts.google.com/noto/specimen/Noto+Sans+JP' },
 ];
 

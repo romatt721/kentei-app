@@ -111,7 +111,7 @@ export const UI_EN: Record<string, string> = {
   'result.notSignificant': 'Not Significant',
   'result.effectSizeTitle': 'Effect Size',
   'result.effectSizeNote':
-    '* Effect size indicates the "magnitude" of a difference or association. The interpretation labels follow the conventional benchmarks of Cohen (1988); standards vary by field.',
+    '* Effect size indicates the "magnitude" of a difference or association. The interpretation labels are conventional benchmarks (Cohen’s d, η², and r-family thresholds follow Cohen, 1988); standards vary by field and coefficient.',
   'result.correlationTitle': 'Correlation Coefficient',
   'result.correlationStrengthNote':
     'Rough guide: |r| < 0.2 negligible / 0.2–0.4 weak / 0.4–0.7 moderate / 0.7–0.9 strong / 0.9+ very strong',

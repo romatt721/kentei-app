@@ -453,8 +453,9 @@ const TESTS_EN: Record<string, TestTranslation> = {
         'The data are at least ordinal',
       ],
       formulaNote:
-        '\\(n\\) is the number of subjects, \\(k\\) is the number of conditions, and \\(R_j\\) is the rank sum for condition j. It approximately follows a χ² distribution with \\(k-1\\) degrees of freedom.',
+        '\\(n\\) is the number of subjects, \\(k\\) is the number of conditions, and \\(R_j\\) is the rank sum for condition j. After applying a tie correction, it approximately follows a χ² distribution with \\(k-1\\) degrees of freedom.',
       example: '10 subjects type on three different keyboards; test whether ease-of-typing ratings differ.',
+      notes: 'With fewer than 10 subjects, the accuracy of the χ² approximation decreases.',
     },
   },
 
@@ -541,7 +542,7 @@ const TESTS_EN: Record<string, TestTranslation> = {
         'The observed pairs are independent of one another',
       ],
       formulaNote:
-        '\\(C\\) is the number of concordant pairs and \\(D\\) is the number of discordant pairs. When there are ties, τb is used. For moderate to large samples, the test uses a normal approximation.',
+        '\\(C\\) is the number of concordant pairs and \\(D\\) is the number of discordant pairs. When there are ties, τb is used. This app computes the p-value via a normal approximation (with tie correction) regardless of sample size.',
       example: 'Examine the agreement between the rankings that two judges assigned to 10 entries.',
     },
   },

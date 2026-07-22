@@ -9,7 +9,7 @@ interface Section {
 const CONTENT: Record<'ja' | 'en', { title: string; updated: string; intro: string; sections: Section[] }> = {
   ja: {
     title: 'プライバシーポリシー',
-    updated: '最終更新日：2026年7月21日',
+    updated: '最終更新日：2026年7月22日',
     intro:
       '本サイト運営者（以下「本サイト運営者」といいます）は、本サイト「有意差検定」（以下「本サイト」といいます）における利用者の情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます）を定めます。',
     sections: [
@@ -42,7 +42,7 @@ const CONTENT: Record<'ja' | 'en', { title: string; updated: string; intro: stri
       {
         heading: '4. アクセス解析ツールについて',
         paragraphs: [
-          '本サイトは、本ポリシーの制定時点においてGoogle Analyticsその他のアクセス解析ツールを使用しておりません。今後導入する場合には、本ポリシーを改定し、本ページにてお知らせします。',
+          '本サイトは、アクセス状況を把握するためVercel Analyticsを利用しています。Vercel AnalyticsはCookieを使用せず、個人を特定できる情報を収集しない解析ツールであり、閲覧ページ・参照元・大まかな地域や端末の種類などを匿名化した形で集計します。この解析データは、検定計算機能で入力されたデータ（本ポリシー第1項）とは完全に独立しており、入力データ自体が解析ツールへ送信されることはありません。本サイトは、本ポリシーの制定時点においてGoogle Analyticsは使用していません。今後、Google Analytics等の追加のアクセス解析ツールを導入する場合には、本ポリシーを改定し、本ページにてお知らせします。',
         ],
       },
       {
@@ -65,7 +65,7 @@ const CONTENT: Record<'ja' | 'en', { title: string; updated: string; intro: stri
   },
   en: {
     title: 'Privacy Policy',
-    updated: 'Last updated: July 21, 2026',
+    updated: 'Last updated: July 22, 2026',
     intro:
       'The operator of this site (the "Site Operator") has established the following Privacy Policy (this "Policy") regarding the handling of user information on "Significance Test" (this "Site").',
     sections: [
@@ -98,7 +98,7 @@ const CONTENT: Record<'ja' | 'en', { title: string; updated: string; intro: stri
       {
         heading: '4. Analytics Tools',
         paragraphs: [
-          'As of the date of this Policy, this Site does not use Google Analytics or any other web analytics tool. If this changes in the future, this Policy will be revised and the update will be posted on this page.',
+          'This Site uses Vercel Analytics to understand traffic to the Site. Vercel Analytics does not use cookies and does not collect personally identifiable information; it aggregates anonymized data such as pages visited, referrers, and coarse geographic/device information. This analytics data is entirely separate from the data you enter into the test-calculation feature (see Section 1) — your input data is never sent to the analytics tool. As of the date of this Policy, this Site does not use Google Analytics. If additional analytics tools such as Google Analytics are introduced in the future, this Policy will be revised and the update will be posted on this page.',
         ],
       },
       {

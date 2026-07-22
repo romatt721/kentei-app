@@ -110,7 +110,7 @@ export const UI_JA: Record<string, string> = {
   'result.notSignificant': '有意でない',
   'result.effectSizeTitle': '効果量',
   'result.effectSizeNote':
-    '※ 効果量は差や関連の「大きさ」を表す指標です。解釈ラベルはCohen (1988)の慣例的な目安であり、分野によって基準は異なります。',
+    '※ 効果量は差や関連の「大きさ」を表す指標です。解釈ラベルは慣例的な目安（Cohen’s d・η²・r系はCohen, 1988による）であり、分野や指標によって基準は異なります。',
   'result.correlationTitle': '相関係数',
   'result.correlationStrengthNote':
     '強さの目安：|r| < 0.2 ほとんど相関なし / 0.2〜0.4 弱い / 0.4〜0.7 中程度 / 0.7〜0.9 強い / 0.9以上 非常に強い',

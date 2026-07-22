@@ -211,14 +211,26 @@ check('ptukey(3.773,3,12)', ptukey(3.773, 3, 12), 0.95, 0.001);
   check('goodness p', r.pValue, 0.849467, 0.0005);
 }
 
-// --- マクネマー: b=3, c=9 → 正確p=0.145996, χ²(補正)=25/12
+// --- マクネマー（正確二項検定、b+c=12≤25）: b=3, c=9 → 正確p=0.145996, 統計量min(b,c)=3, dfなし
 {
   const r = mcnemarTest([
     [20, 3],
     [9, 18],
   ]);
-  check('mcnemar chi2', r.statValue, 25 / 12, 1e-9);
+  check('mcnemar exact: statValue = min(b,c)', r.statValue, 3, 1e-9);
+  check('mcnemar exact: no df', r.df === undefined ? 1 : 0, 1, 0);
   check('mcnemar exact p', r.pValue, 0.145996, 1e-5);
+}
+
+// --- マクネマー（連続性補正付きχ²検定、b+c=30＞25）: b=10, c=20 → χ²(補正)=(|10-20|-1)²/30=81/30=2.7
+{
+  const r = mcnemarTest([
+    [50, 10],
+    [20, 40],
+  ]);
+  check('mcnemar chi2: statValue = χ²', r.statValue, 2.7, 1e-9);
+  check('mcnemar chi2: df = 1', r.df === '1' ? 1 : 0, 1, 0);
+  check('mcnemar chi2 p', r.pValue, 1 - jStat.chisquare.cdf(2.7, 1), 1e-9);
 }
 
 // --- コクランのQ: 手計算（scipyで検算済み）→ Q=5.2, p=0.074274
@@ -411,6 +423,16 @@ function checkStr(name: string, actual: string, expected: string) {
   checkStr('apa: pearson', formatApa(r), 'r(3) = .82, p = .086');
 }
 {
+  // スピアマン：df分岐（相関係数のうちdfを持つケース）
+  const r = spearmanCorrelation([1, 2, 3, 4, 5], [2, 1, 4, 3, 7]);
+  checkStr('apa: spearman', formatApa(r), 'ρs(3) = .80, p = .104');
+}
+{
+  // ケンドールのτ：dfを持たずNを併記するケース
+  const r = kendallTau([1, 2, 3, 4, 5], [2, 1, 4, 3, 7]);
+  checkStr('apa: kendall', formatApa(r), 'τb = .60, p = .142 (N = 5)');
+}
+{
   const r = chiSquareIndependence([
     [10, 20],
     [30, 40],
@@ -427,6 +449,22 @@ function checkStr(name: string, actual: string, expected: string) {
 {
   const r = mannWhitneyU([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]);
   checkStr('apa: mwu', formatApa(r), 'U = 0.00, p = .012');
+}
+{
+  // マクネマー（正確二項検定の場合）：χ²・自由度を出さず「exact test」表記になることを固定する
+  const r = mcnemarTest([
+    [20, 3],
+    [9, 18],
+  ]);
+  checkStr('apa: mcnemar exact', formatApa(r), "McNemar's exact test, p = .146");
+}
+{
+  // マクネマー（連続性補正付きχ²検定の場合）
+  const r = mcnemarTest([
+    [50, 10],
+    [20, 40],
+  ]);
+  checkStr('apa: mcnemar chi2', formatApa(r), 'χ²(1) = 2.70, p = .100');
 }
 {
   const r = shapiroWilk([148, 154, 158, 160, 161, 162, 166, 170, 182, 195, 236]);

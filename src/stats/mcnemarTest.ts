@@ -28,13 +28,14 @@ export function mcnemarTest(observed: number[][]): TestResult {
   }
 
   const chi2 = (Math.abs(b - c) - 1) ** 2 / nChanged;
+  const kMin = Math.min(b, c);
+  const isExact = nChanged <= 25;
 
   let p: number;
   let method: string;
   let approxNote: string;
-  if (nChanged <= 25) {
+  if (isExact) {
     // 正確二項検定: X ~ B(b+c, 0.5)
-    const kMin = Math.min(b, c);
     let cdf = 0;
     for (let i = 0; i <= kMin; i++) {
       cdf += Math.exp(logChoose(nChanged, i) + nChanged * Math.log(0.5));
@@ -42,7 +43,7 @@ export function mcnemarTest(observed: number[][]): TestResult {
     p = Math.min(1, 2 * cdf);
     method = 'マクネマー検定（正確二項検定・両側）';
     approxNote =
-      '変化したペア数が25以下のため、二項分布による正確なp値を表示しています。';
+      '変化したペア数が25以下のため、二項分布による正確なp値を表示しています。この場合χ²値・自由度は用いません。';
   } else {
     p = 1 - jStat.chisquare.cdf(chi2, 1);
     method = 'マクネマー検定（連続性補正付きχ²検定）';
@@ -52,9 +53,9 @@ export function mcnemarTest(observed: number[][]): TestResult {
   return {
     testId: 'mcnemar-test',
     method,
-    statLabel: 'χ²値（連続性補正あり）',
-    statValue: chi2,
-    df: '1',
+    statLabel: isExact ? '変化の少ない方の度数 min(b, c)' : 'χ²値（連続性補正あり）',
+    statValue: isExact ? kMin : chi2,
+    df: isExact ? undefined : '1',
     pValue: p,
     effectSizes:
       c > 0

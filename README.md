@@ -24,7 +24,7 @@
 ## 公開・収益化に向けたページ
 
 - `/faq` よくある質問
-- `/contact` お問い合わせ（**`src/pages/ContactPage.tsx`のメールアドレスは仮のプレースホルダーです。公開前に実際の連絡先へ差し替えてください**）
+- `/contact` お問い合わせ（連絡先メールアドレスは`src/pages/ContactPage.tsx`の`CONTACT_EMAIL`で管理）
 - `/privacy` プライバシーポリシー（Google AdSense等のディスプレイ広告掲載を想定した文言を含む）
 - `/terms` 利用規約
 

@@ -103,7 +103,7 @@ export function formatApa(result: TestResult, locale: Locale = 'ja'): string {
   }
 
   // マクネマー検定：正確二項検定の場合は検定統計量を持たない
-  if (testId === 'mcnemar-test' && result.approxNote?.includes('二項検定')) {
+  if (testId === 'mcnemar-test' && result.method.includes('二項検定')) {
     return `McNemar's exact test, ${pPart}`;
   }
 

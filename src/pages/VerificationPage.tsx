@@ -15,7 +15,7 @@ const CONTENT = {
       {
         heading: '2. 既知の値との自動照合（検算）',
         body: '全23種類の検定について、統計解析ソフトR、または統計学の教科書・数表に掲載されている既知の計算例と結果を突き合わせる検算スクリプトを用意しています。コードを変更するたびにこの検算を実行し、計算結果が既知の値と一致することを確認しています。',
-        detail: '現在、99項目の検算（統計量・p値・APA形式のレポート文・多言語表示の整合性を含む）がすべて一致しています。',
+        detail: '現在、107項目の検算（統計量・p値・APA形式のレポート文・多言語表示の整合性を含む）がすべて一致しています。',
         link: {
           label: '検算スクリプト（scripts/verify.ts）を見る',
           url: 'https://github.com/romatt721/kentei-app/blob/main/scripts/verify.ts',
@@ -77,7 +77,7 @@ const CONTENT = {
       {
         heading: '2. Automated cross-checking against known values',
         body: 'For all 23 tests, we maintain a verification script that compares this app’s output against known results computed with the R statistical software, or published in statistics textbooks and reference tables. This script runs every time the code changes, to confirm that results still match the known values.',
-        detail: 'Currently, all 99 checks pass — covering test statistics, p-values, APA-style report strings, and consistency of the Japanese/English translations.',
+        detail: 'Currently, all 107 checks pass — covering test statistics, p-values, APA-style report strings, and consistency of the Japanese/English translations.',
         link: {
           label: 'View the verification script (scripts/verify.ts)',
           url: 'https://github.com/romatt721/kentei-app/blob/main/scripts/verify.ts',
