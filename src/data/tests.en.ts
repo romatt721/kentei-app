@@ -353,7 +353,7 @@ const TESTS_EN: Record<string, TestTranslation> = {
         'Sphericity holds (the variances of the differences between conditions are equal)',
       ],
       formulaNote:
-        'Because between-subject variability is separated out from the error term, this test has greater power than a between-subjects ANOVA. When sphericity does not hold, corrections such as the Greenhouse-Geisser correction are applied.',
+        'Because between-subject variability is separated out from the error term, this test has greater power than a between-subjects ANOVA. This implementation assumes sphericity and does not apply corrections such as Greenhouse-Geisser; if sphericity is doubtful, the p-value may run smaller than it should, so interpret the result with caution.',
       example: 'Compare heart rate in 8 subjects before exercise, immediately after, and 30 minutes after.',
     },
   },
@@ -413,7 +413,7 @@ const TESTS_EN: Record<string, TestTranslation> = {
         '\\(x_{(i)}\\) is the data sorted in ascending order, and the coefficients \\(a_i\\) are determined from the order statistics of the normal distribution. A W value close to 1 indicates the data are close to normal.',
       example: 'Before running a t-test, check whether 30 measurements in each group can be regarded as normally distributed.',
       notes:
-        'With large samples, even a small departure from normality can become statistically significant, so interpret the result with this in mind.',
+        'With large samples, even a small departure from normality can become statistically significant, so interpret the result with this in mind. The p-value approximation follows the algorithm of Royston (1995), published as AS R94 in Applied Statistics.',
     },
   },
 
