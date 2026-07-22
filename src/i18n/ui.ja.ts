@@ -186,6 +186,10 @@ export const UI_JA: Record<string, string> = {
   'chart.yTickStep': 'Y軸目盛りの間隔',
   'chart.yTickStepPlaceholder': '自動（5等分）',
   'chart.yTickStepHint': '例：1、0.5、0.1など',
+  'chart.rangeInvalidWarning':
+    '最小値が最大値以上になっているため、この指定は無視され、自動範囲で表示しています。',
+  'chart.rangeTruncatedWarning':
+    '指定した表示範囲にはデータの一部が含まれていません。グラフ上で一部の値が見えなくなっている場合があります。',
   'chart.xMinAria': 'X軸の最小値',
   'chart.xMaxAria': 'X軸の最大値',
   'chart.yMinAria': 'Y軸の最小値',

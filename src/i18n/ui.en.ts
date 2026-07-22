@@ -187,6 +187,10 @@ export const UI_EN: Record<string, string> = {
   'chart.yTickStep': 'Y-Axis Tick Interval',
   'chart.yTickStepPlaceholder': 'Auto (5 divisions)',
   'chart.yTickStepHint': 'e.g. 1, 0.5, 0.1',
+  'chart.rangeInvalidWarning':
+    'The minimum is greater than or equal to the maximum, so this setting was ignored and the axis is auto-scaled instead.',
+  'chart.rangeTruncatedWarning':
+    'The specified display range does not cover all of the data. Some values may not be visible in the chart.',
   'chart.xMinAria': 'X-axis minimum',
   'chart.xMaxAria': 'X-axis maximum',
   'chart.yMinAria': 'Y-axis minimum',

@@ -579,5 +579,106 @@ check('i18n: getTestById smoke test', getTestById('t-test-independent') ? 1 : 0,
 check('i18n: parseResult smoke test', parseResult('RESULT:x') === 'x' ? 1 : 0, 1, 0);
 check('i18n: GUIDE_START defined', GUIDE_START === 'root' ? 1 : 0, 1, 0);
 
+// ===== 全23検定：method/statLabel/approxNote/extraStats/warningsが実際に英訳されることの検証 =====
+// statsLabels.tsのtranslateStatsTextは、辞書・テンプレートのどちらにも一致しない文字列は
+// 「無警告で原文（日本語）のまま」返す設計になっている。そのため、stats/*.tsの文言を変更した際に
+// statsLabels.tsへの追記を忘れると、英語画面に日本語が混在するバグが検算なしに埋め込まれてしまう
+// （実際に、マクネマー検定のstatLabel/approxNote修正時にこの見落としが発生し、本チェックの追加時に発覚した）。
+// 日本語を含む文字列が1つでも「翻訳後も変化しない（＝辞書・テンプレートに一致しなかった）」場合はNGとする。
+{
+  const containsJapanese = (s: string) => /[぀-ヿ㐀-鿿]/.test(s);
+  const untranslated: string[] = [];
+  function checkTranslated(label: string, text: string | undefined) {
+    if (!text || !containsJapanese(text)) return;
+    const translated = translateStatsText(text, 'en');
+    if (translated === text) untranslated.push(`${label}: "${text}"`);
+  }
+  function auditResult(testId: string, r: ReturnType<typeof tTestIndependent>) {
+    checkTranslated(`${testId} method`, r.method);
+    checkTranslated(`${testId} statLabel`, r.statLabel);
+    checkTranslated(`${testId} approxNote`, r.approxNote);
+    r.extraStats?.forEach((e) => checkTranslated(`${testId} extraStats label`, e.label));
+    r.effectSizes?.forEach((e) => checkTranslated(`${testId} effectSize label`, e.label));
+    r.warnings?.forEach((w) => checkTranslated(`${testId} warning`, w));
+  }
+
+  auditResult('t-test-independent', tTestIndependent([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]));
+  auditResult('t-test-paired', tTestPaired([1, 2, 3, 4, 5], [2, 3, 5, 4, 7]));
+  auditResult('t-test-one-sample', tTestOneSample([1, 2, 3, 4, 5], 2));
+  auditResult('welch-t-test', welchTTest([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]));
+  auditResult('one-way-anova', oneWayAnova([[1, 2, 3], [2, 3, 4], [4, 5, 6]]));
+  auditResult(
+    'two-way-anova',
+    twoWayAnova(
+      [
+        [1, 2],
+        [3, 4],
+        [5, 6],
+        [7, 8],
+      ],
+      2,
+      2,
+    ),
+  );
+  auditResult('repeated-measures-anova', repeatedMeasuresAnova([[1, 2, 3], [2, 3, 4], [3, 5, 6]]));
+  auditResult('f-test-variance', fTestVariance([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]));
+  auditResult('levene-test', leveneTest([[1, 2, 3, 4], [2, 4, 6, 8], [1, 3, 5, 7]]));
+  auditResult('shapiro-wilk', shapiroWilk([2, 4, 5, 7, 8, 9, 11, 13, 14, 20]));
+  auditResult('pearson-correlation', pearsonCorrelation([1, 2, 3, 4, 5], [2, 1, 4, 3, 7]));
+  auditResult('spearman-correlation', spearmanCorrelation([1, 2, 3, 4, 5], [2, 1, 4, 3, 7]));
+  auditResult('kendall-tau', kendallTau([1, 2, 3, 4, 5], [2, 1, 4, 3, 7]));
+  auditResult('mann-whitney-u', mannWhitneyU([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]));
+  auditResult('wilcoxon-signed-rank', wilcoxonSigned([2, 4, 6, 8, 10], [1, 2, 3, 4, 5]));
+  auditResult('kruskal-wallis', kruskalWallis([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
+  auditResult('friedman-test', friedmanTest([[1, 2, 3], [2, 3, 1], [3, 1, 2]]));
+  auditResult(
+    'sign-test',
+    signTest([2, 3, 4, 5, 6, 7, 8, 9, 1, 2], [1, 2, 3, 4, 5, 6, 7, 8, 3, 4]),
+  );
+  auditResult(
+    'chi-square-independence',
+    chiSquareIndependence([
+      [10, 20],
+      [30, 40],
+    ]),
+  );
+  auditResult('chi-square-goodness', chiSquareGoodness([18, 22, 20, 40], [1, 1, 1, 1]));
+  auditResult(
+    'fisher-exact',
+    fisherExact([
+      [1, 9],
+      [11, 3],
+    ]),
+  );
+  auditResult(
+    'mcnemar-test (exact)',
+    mcnemarTest([
+      [20, 3],
+      [9, 18],
+    ]),
+  );
+  auditResult(
+    'mcnemar-test (chi2)',
+    mcnemarTest([
+      [50, 10],
+      [20, 40],
+    ]),
+  );
+  auditResult(
+    'cochran-q',
+    cochranQ([
+      [1, 1, 1, 1, 1, 1],
+      [1, 0, 1, 0, 0, 1],
+      [0, 0, 1, 0, 1, 0],
+    ]),
+  );
+
+  if (untranslated.length > 0) {
+    console.log('NG  i18n: 以下の文字列が英語画面でも日本語のまま表示されます（statsLabels.tsへの追記漏れ）:');
+    untranslated.forEach((u) => console.log(`     - ${u}`));
+  }
+  check('i18n: 全検定結果のmethod/statLabel/approxNote/extraStats/warningsが英訳される', untranslated.length === 0 ? 1 : 0, 1, 0);
+}
+
 console.log(failed === 0 ? '\nすべて一致しました。' : `\n${failed}件の不一致があります。`);
 process.exit(failed === 0 ? 0 : 1);

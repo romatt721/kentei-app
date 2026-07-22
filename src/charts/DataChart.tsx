@@ -62,6 +62,13 @@ function parseOptionalNumber(s: string): number | undefined {
   return Number.isFinite(v) ? v : undefined;
 }
 
+/** 実データの範囲（最小値・最大値）を返す。有限値が1つもなければundefined */
+function computeDataExtent(values: number[]): [number, number] | undefined {
+  const finite = values.filter((v) => Number.isFinite(v));
+  if (finite.length === 0) return undefined;
+  return [Math.min(...finite), Math.max(...finite)];
+}
+
 /** ラベル配列を編集するテキスト入力群 */
 function LabelEditors({
   title,
@@ -152,12 +159,56 @@ export default function DataChart({ def, params, rawData, columnLabels, locale, 
 
   if (!kind) return null;
 
-  const yMin = parseOptionalNumber(yMinStr);
-  const yMax = parseOptionalNumber(yMaxStr);
-  const xMin = parseOptionalNumber(xMinStr);
-  const xMax = parseOptionalNumber(xMaxStr);
+  const yMinRaw = parseOptionalNumber(yMinStr);
+  const yMaxRaw = parseOptionalNumber(yMaxStr);
+  const xMinRaw = parseOptionalNumber(xMinStr);
+  const xMaxRaw = parseOptionalNumber(xMaxStr);
   const yTickStepRaw = parseOptionalNumber(yTickStepStr);
   const yTickStep = yTickStepRaw !== undefined && yTickStepRaw > 0 ? yTickStepRaw : undefined;
+
+  // 最小値が最大値以上の場合は不正な指定として無視し、自動範囲にフォールバックする
+  // （軸が反転して表示されたり、スケール計算がゼロ除算でNaN/Infinityになったりするのを防ぐ）
+  const yRangeInvalid = yMinRaw !== undefined && yMaxRaw !== undefined && yMinRaw >= yMaxRaw;
+  const xRangeInvalid = xMinRaw !== undefined && xMaxRaw !== undefined && xMinRaw >= xMaxRaw;
+  const yMin = yRangeInvalid ? undefined : yMinRaw;
+  const yMax = yRangeInvalid ? undefined : yMaxRaw;
+  const xMin = xRangeInvalid ? undefined : xMinRaw;
+  const xMax = xRangeInvalid ? undefined : xMaxRaw;
+
+  // 実データの範囲を計算し、指定した表示範囲がデータの一部を切り捨てていないか確認する
+  // （警告なしにバー・箱ひげ・点が消えたり、グラフが実データより狭く見えたりするのを防ぐ）
+  let yDataExtent: [number, number] | undefined;
+  if (kind === 'scatter') {
+    yDataExtent = computeDataExtent(rawData[1] ?? []);
+  } else if (kind === 'pairedSlope') {
+    yDataExtent = computeDataExtent([...(rawData[0] ?? []), ...(rawData[1] ?? [])]);
+  } else if (isCategoryAxis) {
+    let vals: number[];
+    if (kind === 'goodnessBar') {
+      const observed = rawData.map((row) => row[0]);
+      const ratios = rawData.map((row) => row[1]);
+      const ratioSum = ratios.reduce((s, v) => s + v, 0);
+      const total = observed.reduce((s, v) => s + v, 0);
+      vals = [...observed, ...ratios.map((r) => (total * r) / ratioSum)];
+    } else if (kind === 'successBar') {
+      vals = rawData.map((col) => col.reduce((s, v) => s + v, 0));
+    } else {
+      vals = rawData.flat();
+    }
+    yDataExtent = computeDataExtent([0, ...vals]);
+  } else {
+    yDataExtent = computeDataExtent(rawData.flat());
+  }
+  const xDataExtent = kind === 'scatter' ? computeDataExtent(rawData[0] ?? []) : undefined;
+
+  const yTruncated =
+    !yRangeInvalid &&
+    yDataExtent !== undefined &&
+    ((yMin !== undefined && yMin > yDataExtent[0]) || (yMax !== undefined && yMax < yDataExtent[1]));
+  const xTruncated =
+    !xRangeInvalid &&
+    xDataExtent !== undefined &&
+    ((xMin !== undefined && xMin > xDataExtent[0]) || (xMax !== undefined && xMax < xDataExtent[1]));
 
   const handleSaveFile = async (type: 'png' | 'svg') => {
     setDownloadError(null);
@@ -449,6 +500,17 @@ export default function DataChart({ def, params, rawData, columnLabels, locale, 
               <p className="mt-1 text-xs text-textSub">{t('chart.yTickStepHint')}</p>
             </div>
           </div>
+
+          {(yRangeInvalid || xRangeInvalid) && (
+            <p className="mt-2 text-xs font-bold text-accent" role="alert">
+              ⚠ {t('chart.rangeInvalidWarning')}
+            </p>
+          )}
+          {!yRangeInvalid && !xRangeInvalid && (yTruncated || xTruncated) && (
+            <p className="mt-2 text-xs font-bold text-accent" role="alert">
+              ⚠ {t('chart.rangeTruncatedWarning')}
+            </p>
+          )}
         </div>
       </details>
     </div>

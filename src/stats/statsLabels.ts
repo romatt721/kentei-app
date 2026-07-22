@@ -102,6 +102,7 @@ const EXACT: Record<string, string> = {
   'F値（交互作用A×B）': 'F value (interaction A×B)',
   'χ²値': 'χ² value',
   'χ²値（連続性補正あり）': 'χ² value (with continuity correction)',
+  '変化の少ない方の度数 min(b, c)': 'The smaller of the two discordant counts, min(b, c)',
   'H値': 'H value',
   'U値': 'U value',
   'W値': 'W value',
@@ -217,8 +218,8 @@ const EXACT: Record<string, string> = {
     'This result assumes sphericity (no correction such as Greenhouse-Geisser is applied). If sphericity is doubtful, the p-value may be smaller than it should be.',
   '差が0のペアは除外して計算しています。p値は二項分布による正確な値です。':
     'Pairs with a difference of 0 are excluded. The p-value is an exact value based on the binomial distribution.',
-  '変化したペア数が25以下のため、二項分布による正確なp値を表示しています。':
-    'Because the number of changed pairs is 25 or fewer, an exact p-value from the binomial distribution is shown.',
+  '変化したペア数が25以下のため、二項分布による正確なp値を表示しています。この場合χ²値・自由度は用いません。':
+    'Because the number of changed pairs is 25 or fewer, an exact p-value from the binomial distribution is shown; no χ² value or degrees of freedom are used in this case.',
   'p値は連続性補正付きχ²近似（自由度1）による値です。':
     'The p-value is based on a χ² approximation with a continuity correction (1 degree of freedom).',
   '交互作用が有意な場合、主効果の解釈には注意が必要です（単純主効果の分析を検討してください）。':
