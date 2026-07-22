@@ -41,8 +41,12 @@
 - `vercel.json` を追加済み（Vercelにデプロイした際、`/privacy`等への直接アクセスやリロードで404にならないようにするSPAルーティング設定）
 
 ### 検証体制
-- `npm run verify`：統計計算・APA形式・多言語翻訳の整合性チェック（約100項目）
+- `npm run verify`：統計計算・APA形式・多言語翻訳の整合性チェック（99項目、すべて一致）
 - Playwright E2Eテスト一式（`/private/tmp/.../scratchpad/e2e*.py`にあるが、セッション終了とともに消える一時ファイルのため、再度必要なら作り直しが必要）
+- 計算結果の信頼性向上のため、2026-07-22に以下を実施済み：
+  - GitHubリポジトリ `romatt721/kentei-app` をPrivate→**Public**に変更（計算ソースコードを含め全体公開）
+  - サイトに `/verification`（計算結果の検証について）ページを新設。検算方法・99項目全一致であることを日英両言語で説明し、フッターからリンク
+  - GitHub Actions（`.github/workflows/verify.yml`）を追加し、push・PRごとに`npm run verify`を自動実行。READMEにCIバッジを設置
 
 ### バージョン管理
 - `git init`済み、最初のコミット作成済み（2026-07-21）
