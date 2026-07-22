@@ -11,6 +11,9 @@ export default function Footer() {
           <Link to="/faq" className="text-primary hover:underline">
             {t('footer.faq')}
           </Link>
+          <Link to="/verification" className="text-primary hover:underline">
+            {t('footer.verification')}
+          </Link>
           <Link to="/contact" className="text-primary hover:underline">
             {t('footer.contact')}
           </Link>

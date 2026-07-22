@@ -19,6 +19,7 @@ export const UI_JA: Record<string, string> = {
   'footer.privacy': 'すべての計算はお使いのブラウザ内で完結し、データは外部に送信されません。',
   'footer.credits': 'オープンソースライセンス（クレジット表示）',
   'footer.faq': 'よくある質問',
+  'footer.verification': '計算結果の検証について',
   'footer.contact': 'お問い合わせ',
   'footer.privacyPolicy': 'プライバシーポリシー',
   'footer.termsOfUse': '利用規約',

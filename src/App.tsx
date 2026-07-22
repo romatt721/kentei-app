@@ -15,6 +15,7 @@ import ResultPage from './pages/ResultPage';
 import TermsPage from './pages/TermsPage';
 import TestGuide from './pages/TestGuide';
 import TestSelector from './pages/TestSelector';
+import VerificationPage from './pages/VerificationPage';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
                 <Route path="/explain/:testId" element={<ExplainDetail />} />
                 <Route path="/credits" element={<CreditsPage />} />
                 <Route path="/faq" element={<FaqPage />} />
+                <Route path="/verification" element={<VerificationPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />

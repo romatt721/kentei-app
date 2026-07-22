@@ -1,6 +1,10 @@
 # 有意差検定
 
+[![verify](https://github.com/romatt721/kentei-app/actions/workflows/verify.yml/badge.svg)](https://github.com/romatt721/kentei-app/actions/workflows/verify.yml)
+
 パラメトリック・ノンパラメトリック検定を選択してデータを入力するだけで、p値と判定が得られる統計解析Webアプリです。すべての計算はブラウザ内で完結し、データは外部に送信されません。
+
+計算結果の検証方法（Rや数表との照合、検算スクリプトの中身）は [公開サイトの「計算結果の検証について」ページ](https://kentei-app-silk.vercel.app/verification) でも説明しています。
 
 ## 実装済みの検定（全23種）
 
