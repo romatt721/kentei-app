@@ -14,6 +14,8 @@ export const UI_JA: Record<string, string> = {
   'header.guide': '検定選択ガイド',
   'header.langButtonEn': 'English',
   'header.langButtonJa': '日本語',
+  'header.navLabel': 'メインナビゲーション',
+  'footer.navLabel': 'フッターナビゲーション',
 
   // ===== フッター =====
   'footer.privacy': 'すべての計算はお使いのブラウザ内で完結し、データは外部に送信されません。',

@@ -36,7 +36,7 @@ export default function CreditsPage() {
                   <a
                     href={c.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="font-bold text-primary hover:underline"
                   >
                     {c.name}

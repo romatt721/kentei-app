@@ -151,7 +151,7 @@ export default function PrivacyPage() {
                     <a
                       href={link.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
                       {link.label}

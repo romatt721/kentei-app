@@ -16,7 +16,7 @@ export default function Header() {
           </span>
           <span className="text-lg font-bold text-textMain">{t('header.appName')}</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex items-center gap-4 text-sm" aria-label={t('header.navLabel')}>
           <NavLink
             to="/"
             className={({ isActive }) =>

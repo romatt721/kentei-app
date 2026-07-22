@@ -200,7 +200,7 @@ export default function ResultPage() {
                   {formatStat(es.value)}
                 </p>
                 {es.interpretation && (
-                  <span className="rounded-full bg-secondary/10 px-3 py-1 text-sm font-bold text-secondary">
+                  <span className="rounded-full bg-secondary/5 px-3 py-1 text-sm font-bold text-secondaryText">
                     {tr(es.interpretation)}
                   </span>
                 )}
@@ -218,7 +218,7 @@ export default function ResultPage() {
             <p className="text-3xl font-bold text-textMain">
               {result.correlation.r.toFixed(4)}
             </p>
-            <span className="rounded-full bg-primary/10 px-4 py-1 font-bold text-primary">
+            <span className="rounded-full bg-primary/5 px-4 py-1 font-bold text-primary">
               {tr(result.correlation.label)}
             </span>
           </div>

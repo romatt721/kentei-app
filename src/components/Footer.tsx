@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="mt-12 border-t border-border bg-card">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-4 py-6 text-sm text-textSub">
         <p>{t('footer.privacy')}</p>
-        <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+        <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label={t('footer.navLabel')}>
           <Link to="/faq" className="text-primary hover:underline">
             {t('footer.faq')}
           </Link>

@@ -27,7 +27,7 @@ function Section({ category, title }: { category: Category; title: string }) {
                   <span className="mt-0.5 block text-xs text-textSub">{localized.description}</span>
                 </span>
                 {tst.phase === 2 && (
-                  <span className="ml-2 shrink-0 rounded-full bg-textSub/10 px-2 py-0.5 text-xs font-bold text-textSub">
+                  <span className="ml-2 shrink-0 rounded-full border border-border px-2 py-0.5 text-xs font-bold text-textSub">
                     {t('explainList.comingSoon')}
                   </span>
                 )}

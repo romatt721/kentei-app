@@ -32,19 +32,19 @@ function TestCard({ test }: { test: TestDef }) {
         <span
           className={`rounded-full px-2 py-0.5 text-xs font-bold ${
             test.category === 'parametric'
-              ? 'bg-primary/10 text-primary'
-              : 'bg-secondary/10 text-secondary'
+              ? 'bg-primary/5 text-primary'
+              : 'bg-secondary/5 text-secondaryText'
           }`}
         >
           {test.category === 'parametric' ? t('testSelector.tabParametric') : t('testSelector.tabNonparametric')}
         </span>
         {!isReady && (
-          <span className="rounded-full bg-textSub/10 px-2 py-0.5 text-xs font-bold text-textSub">
+          <span className="rounded-full border border-border px-2 py-0.5 text-xs font-bold text-textSub">
             {t('testSelector.comingSoon')}
           </span>
         )}
       </div>
-      <h3 className="mb-1 font-bold text-textMain">{localized.name}</h3>
+      <h2 className="mb-1 font-bold text-textMain">{localized.name}</h2>
       <p className="mb-4 flex-1 text-sm text-textSub">{localized.description}</p>
       <button
         type="button"
@@ -92,7 +92,7 @@ export default function TestSelector() {
       </h1>
       <p className="mb-4 text-center text-sm text-textSub">
         {t('testSelector.subtitlePrefix')}
-        <a href="/explain" className="text-primary hover:underline">
+        <a href="/explain" className="text-primary underline hover:no-underline">
           {t('testSelector.subtitleLink')}
         </a>
         {t('testSelector.subtitleSuffix')}

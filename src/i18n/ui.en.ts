@@ -14,6 +14,8 @@ export const UI_EN: Record<string, string> = {
   'header.guide': 'Test Wizard',
   'header.langButtonEn': 'English',
   'header.langButtonJa': '日本語',
+  'header.navLabel': 'Main navigation',
+  'footer.navLabel': 'Footer navigation',
 
   // ===== Footer =====
   'footer.privacy': 'All calculations run entirely in your browser. No data is ever sent to a server.',

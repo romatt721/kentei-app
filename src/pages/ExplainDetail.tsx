@@ -70,14 +70,14 @@ export default function ExplainDetail() {
         <span
           className={`rounded-full px-2 py-0.5 text-xs font-bold ${
             def.category === 'parametric'
-              ? 'bg-primary/10 text-primary'
-              : 'bg-secondary/10 text-secondary'
+              ? 'bg-primary/5 text-primary'
+              : 'bg-secondary/5 text-secondaryText'
           }`}
         >
           {def.category === 'parametric' ? t('explainDetail.parametric') : t('explainDetail.nonparametric')}
         </span>
         {def.phase === 2 && (
-          <span className="rounded-full bg-textSub/10 px-2 py-0.5 text-xs font-bold text-textSub">
+          <span className="rounded-full border border-border px-2 py-0.5 text-xs font-bold text-textSub">
             {t('explainDetail.comingSoon')}
           </span>
         )}
