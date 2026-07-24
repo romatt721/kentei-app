@@ -8,6 +8,9 @@ export default function Footer() {
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-3 px-4 py-6 text-sm text-textSub">
         <p>{t('footer.privacy')}</p>
         <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1" aria-label={t('footer.navLabel')}>
+          <Link to="/about" className="text-primary hover:underline">
+            {t('footer.about')}
+          </Link>
           <Link to="/faq" className="text-primary hover:underline">
             {t('footer.faq')}
           </Link>

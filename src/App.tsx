@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { AppProvider } from './context/AppContext';
 import { LocaleProvider } from './i18n/LocaleContext';
+import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import CreditsPage from './pages/CreditsPage';
 import ExplainDetail from './pages/ExplainDetail';
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/result" element={<ResultPage />} />
                 <Route path="/explain" element={<ExplainList />} />
                 <Route path="/explain/:testId" element={<ExplainDetail />} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/credits" element={<CreditsPage />} />
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/verification" element={<VerificationPage />} />
