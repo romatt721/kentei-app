@@ -20,6 +20,7 @@ export const UI_EN: Record<string, string> = {
   // ===== Footer =====
   'footer.privacy': 'All calculations run entirely in your browser. No data is ever sent to a server.',
   'footer.credits': 'Open Source Licenses',
+  'footer.about': 'About This Site',
   'footer.faq': 'FAQ',
   'footer.verification': 'How Accuracy Is Verified',
   'footer.contact': 'Contact',
