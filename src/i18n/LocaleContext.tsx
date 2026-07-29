@@ -35,8 +35,22 @@ interface LocaleContextValue {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => detectInitialLocale());
+export function LocaleProvider({
+  children,
+  initialLocale = 'ja',
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+
+  // ビルド時にプリレンダリングしたHTML（日本語）とハイドレーション結果を一致させるため、
+  // 初回レンダリングは必ずinitialLocaleで行い、localStorage・ブラウザ言語の反映は
+  // マウント後に回す。サーバー側にはwindow/localStorageが無いという事情もある。
+  useEffect(() => {
+    const detected = detectInitialLocale();
+    setLocaleState((current) => (current === detected ? current : detected));
+  }, []);
 
   // <html lang>属性を現在の言語に同期させる（アクセシビリティ・SEO対策）
   useEffect(() => {

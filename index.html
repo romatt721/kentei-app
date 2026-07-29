@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="6i2Z-qSku_A4insQTlraf0Wz8n5B34-R2P6ja2UiktM" />
+    <!--
+      下の seo-head ブロックは、ビルド時に scripts/prerender.ts が
+      ページごとの内容（title / description / canonical / OGP）で丸ごと差し替える。
+      ここに書いてあるのは開発サーバー用のフォールバック。
+    -->
+    <!--seo-head-start-->
     <title>有意差検定の計算サイト｜t検定・ANOVAやP値をブラウザで簡単計算</title>
     <meta
       name="description"
       content="有意差検定を無料でブラウザ計算。t検定・分散分析（ANOVA）・カイ二乗検定などP値が求まる23種類の統計的検定に対応。データはサーバーに送信されません。日本語・英語対応。"
     />
-    <meta name="google-site-verification" content="6i2Z-qSku_A4insQTlraf0Wz8n5B34-R2P6ja2UiktM" />
+    <!--seo-head-end-->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="有意差検定の計算サイト｜t検定・ANOVAやP値をブラウザで簡単計算" />
-    <meta
-      property="og:description"
-      content="有意差検定を無料でブラウザ計算。t検定・分散分析（ANOVA）・カイ二乗検定などP値が求まる23種類の統計的検定に対応。データはサーバーに送信されません。"
-    />
-    <meta property="og:locale" content="ja_JP" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,7 +43,7 @@
     ></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--ssr-outlet--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
