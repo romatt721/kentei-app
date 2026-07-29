@@ -31,7 +31,21 @@
 
 いずれも日本語・英語両対応で、フッターの各ページからリンクしています。
 
-検索エンジン向けに `public/sitemap.xml`（全静的ページ＋23検定の解説ページを列挙）を設置し、`public/robots.txt` から参照しています。解説ページを追加・削除した場合はsitemap.xmlも更新してください。
+## SEO（検索エンジン対策）
+
+SPAはそのままだと全ルートが同じHTML（同じtitle・description）を返してしまい、検索エンジンに重複ページとみなされます。これを避けるため、ビルド時に全ページを**プリレンダリング**しています。
+
+- `src/seo/siteConfig.ts` … サイトURL（`SITE_URL`）。**独自ドメインへ移行するときはこの1行だけを書き換える**と、canonical・OGP・sitemap.xml・robots.txt がすべて追従します
+- `src/seo/routeMeta.ts` … ページごとの title / description / canonical を日本語・英語で定義。インデックス対象ルート一覧（`INDEXABLE_ROUTES`）もここが唯一の定義元
+- `src/seo/useSeo.ts` … SPAのクライアント遷移・言語切り替え時に`<head>`のタグを追従させるフック
+- `src/entry-server.tsx` … プリレンダリング用のエントリ（`renderToString`＋`StaticRouter`）
+- `scripts/prerender.ts` … 全ルートについて `dist/<route>/index.html` を生成し、あわせて `dist/sitemap.xml` と `dist/robots.txt` を出力する
+
+`npm run build` を実行すると、クライアントビルド → SSRビルド → プリレンダリングの順に走り、33ページ分の静的HTML（本文レンダリング済み）が生成されます。ブラウザ側は生成済みHTMLをハイドレーションします。
+
+検定を追加・削除しても `src/data/tests.ts` を直せばsitemap.xmlとプリレンダリング対象は自動的に追従するので、**sitemap.xmlを手で更新する必要はありません**。
+
+なお `/params` `/input` `/result` は計算の操作途中の画面で単独のコンテンツを持たないため、robots.txtでクロール対象から除外しています。
 
 ## 使い方（コマンド）
 
@@ -42,7 +56,8 @@
 | `npm install` | 依存ライブラリをインストールする（初回のみ） |
 | `npm run dev` | 開発サーバーを起動する。ブラウザで http://localhost:5173 を開く |
 | `npx tsc --noEmit` | TypeScriptの型エラーをチェックする |
-| `npm run build` | 本番用ファイルを `dist/` に生成する |
+| `npm run build` | 本番用ファイルを `dist/` に生成する（プリレンダリングまで実行される） |
+| `npm run prerender` | プリレンダリングだけを再実行する（`npm run build` の後でのみ有効） |
 | `npm run verify` | 統計計算をR・数表の既知値と照合する検算を実行する |
 
 ## 技術構成
@@ -64,15 +79,18 @@ src/
                 検定選択ガイドの質問ツリー（guideTree.ts＋英語版guideTree.en.ts）
   i18n/         言語切り替え（LocaleContext.tsx）とUI文言辞書（ui.ja.ts / ui.en.ts）
   pages/        画面A〜F＋クレジットページ＋検定選択ガイド（TestGuide.tsx）
+  seo/          サイトURL・ページ別メタ情報・headタグ更新フック
   stats/        検定ごとの計算モジュール（検定1種につき1ファイル）、
                 APA形式フォーマッタ（apa.ts）、統計結果の英訳辞書（statsLabels.ts）
+  entry-server.tsx  プリレンダリング用エントリ
   types.ts      共有型定義
 scripts/
   verify.ts     統計計算の検算スクリプト（英語ロケールの翻訳整合性チェックも含む）
+  prerender.ts  全ページの静的HTML＋sitemap.xml＋robots.txtを生成する
 public/
   favicon.svg   ファビコン
-  robots.txt    クロール許可設定
-vercel.json     Vercelデプロイ時のSPAルーティング設定（直接URLアクセス・リロードで404にならないようにする）
+vercel.json     Vercelデプロイ設定（プリレンダリング済みHTMLを優先し、それ以外のパスは
+                index.htmlへフォールバックする。末尾スラッシュなしに正規化）
 ```
 
 ## 免責事項

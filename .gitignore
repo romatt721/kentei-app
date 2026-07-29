@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+# プリレンダリング用のサーバーバンドル（scripts/prerender.ts が使う中間生成物）
+.prerender
 *.local
 
 # Editor directories and files
