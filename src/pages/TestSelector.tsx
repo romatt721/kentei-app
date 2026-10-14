@@ -58,6 +58,13 @@ function TestCard({ test }: { test: TestDef }) {
       >
         {isReady ? t('testSelector.useTest') : t('testSelector.comingSoon')}
       </button>
+      <Link
+        to={`/explain/${test.id}`}
+        className="mt-2 text-center text-xs text-primary hover:underline"
+        aria-label={`${localized.name} — ${t('testSelector.readExplanation')}`}
+      >
+        {t('testSelector.readExplanation')}
+      </Link>
     </div>
   );
 }

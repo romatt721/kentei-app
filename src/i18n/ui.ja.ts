@@ -53,6 +53,7 @@ export const UI_JA: Record<string, string> = {
   'testSelector.tabNonparametric': 'ノンパラメトリック',
   'testSelector.useTest': 'この検定を使う',
   'testSelector.comingSoon': '準備中',
+  'testSelector.readExplanation': '解説を読む',
 
   // ===== 画面B：パラメータ指定 =====
   'params.subtitle': 'データの構成を指定してください。次の画面で入力ボックスが生成されます。',
@@ -156,6 +157,7 @@ export const UI_JA: Record<string, string> = {
   'explainDetail.example': '使用例',
   'explainDetail.notes': '補足・注意点',
   'explainDetail.useButton': 'この検定でデータを解析する',
+  'explainDetail.related': '同じ分類のほかの検定',
 
   // ===== 検定選択ガイド =====
   'guide.title': '検定選択ガイド',
