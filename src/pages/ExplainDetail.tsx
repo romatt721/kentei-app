@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import Disclaimer from '../components/Disclaimer';
 import { useApp } from '../context/AppContext';
-import { getTestById } from '../data/tests';
+import { getTestById, tests } from '../data/tests';
 import { getLocalizedTest } from '../data/tests.en';
 import { useLocale } from '../i18n/LocaleContext';
 
@@ -51,6 +51,7 @@ export default function ExplainDetail() {
 
   const localized = getLocalizedTest(def, locale);
   const ex = localized.explanation;
+  const related = tests.filter((tst) => tst.category === def.category && tst.id !== def.id);
 
   const handleUse = () => {
     selectTest(def.id);
@@ -143,6 +144,24 @@ export default function ExplainDetail() {
           </button>
         </div>
       )}
+
+      <nav className="mt-8" aria-label={t('explainDetail.related')}>
+        <h2 className="mb-2 border-l-4 border-primary pl-3 text-lg font-bold text-textMain">
+          {t('explainDetail.related')}
+        </h2>
+        <ul className="flex flex-wrap gap-2">
+          {related.map((tst) => (
+            <li key={tst.id}>
+              <Link
+                to={`/explain/${tst.id}`}
+                className="block rounded-full border border-border bg-card px-3 py-1 text-sm text-primary hover:border-primary"
+              >
+                {getLocalizedTest(tst, locale).name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <Disclaimer />
     </div>

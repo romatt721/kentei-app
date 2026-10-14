@@ -8,7 +8,7 @@
  *   - Reactでレンダリング済みの本文HTML
  * が含まれるので、クローラーはJavaScriptを実行しなくてもページの中身を読める。
  *
- * あわせて sitemap.xml と robots.txt も SITE_URL から生成する。
+ * あわせて 404.html と、SITE_URL から sitemap.xml・robots.txt も生成する。
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -27,6 +27,9 @@ const SSR_OUTLET = '<!--ssr-outlet-->';
 
 /** プリレンダリングは日本語で行う（サイトの主要ターゲットが日本語検索のため） */
 const PRERENDER_LOCALE = 'ja' as const;
+
+/** 404.html のレンダリングに使うダミーのパス（どのルートにも一致しなければ何でもよい） */
+const NOT_FOUND_ROUTE = '/404';
 
 function escapeAttr(value: string): string {
   return value
@@ -119,6 +122,15 @@ async function main(): Promise<void> {
     await mkdir(dirname(file), { recursive: true });
     await writeFile(file, html, 'utf8');
   }
+
+  // 存在しないURL用のページ。Vercelは出力ルートの 404.html をステータス404で返す。
+  // 中身はアプリのトップ画面（Appの `*` ルート）だが、noindex付きなので
+  // 「正常なページなのに中身がトップと同じ」（ソフト404）と判定されることがない。
+  const notFoundHtml =
+    template.slice(0, headStart) +
+    buildHead(getRouteMeta(NOT_FOUND_ROUTE, PRERENDER_LOCALE)).trimStart() +
+    template.slice(headEnd).replace(SSR_OUTLET, () => render(NOT_FOUND_ROUTE));
+  await writeFile(join(DIST, '404.html'), notFoundHtml, 'utf8');
 
   await writeFile(join(DIST, 'sitemap.xml'), buildSitemap(INDEXABLE_ROUTES), 'utf8');
   await writeFile(join(DIST, 'robots.txt'), buildRobots(), 'utf8');

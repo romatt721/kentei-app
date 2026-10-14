@@ -1,4 +1,8 @@
 {
   "trailingSlash": false,
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/params", "destination": "/index.html" },
+    { "source": "/input", "destination": "/index.html" },
+    { "source": "/result", "destination": "/index.html" }
+  ]
 }

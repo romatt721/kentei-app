@@ -53,6 +53,7 @@ export const UI_EN: Record<string, string> = {
   'testSelector.tabNonparametric': 'Nonparametric',
   'testSelector.useTest': 'Use this test',
   'testSelector.comingSoon': 'Coming soon',
+  'testSelector.readExplanation': 'Read the explanation',
 
   // ===== Screen B: Parameters =====
   'params.subtitle': 'Specify the shape of your data. The input boxes will be generated on the next screen.',
@@ -157,6 +158,7 @@ export const UI_EN: Record<string, string> = {
   'explainDetail.example': 'Example',
   'explainDetail.notes': 'Notes & Caveats',
   'explainDetail.useButton': 'Analyze your data with this test',
+  'explainDetail.related': 'Other tests in this category',
 
   // ===== Test selection wizard =====
   'guide.title': 'Test Selection Wizard',
